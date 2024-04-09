@@ -27,17 +27,17 @@ let nextoption= await inquirer.prompt(   //agr pin correct hoe to ye sawal pochn
             name:"operations",
             message:"Please select option",
             type:"list",
-            choices:["Withdraw","Check Balance"]
+            choices:["Withdraw","Check Balance","Fast Cash"]
         }
     ]
 );
+
 if(nextoption.operations==="Withdraw"){
     //console.log("Your current balance is: "+(mybalance));           //--> this line called concatenation
     console.log(`Your current balance is:${mybalance}`);              //--> this line called template literal
 
 
-
-    let amountwithdraw = await inquirer.prompt( //agar withdraw select kare to amont pocho user se Q3
+    let amountwithdraw = await inquirer.prompt( //agar withdraw select kare to amount pocho user se Q3
    [
       {
         name: "amount",
@@ -68,10 +68,29 @@ else if (nextoption.operations==="Check Balance")
         console.log(mybalance);
     }
 
-}
 
+else if (nextoption.operations==="Fast Cash")
+
+    {
+        console.log(`Your current balance is:${mybalance}`);
+    let fast = await inquirer.prompt(
+        [
+            {
+             name: "fastoption",
+             message:"Choose Withdraw Amount:",
+             type:"list",
+             choices:["2500","5000","10000"]
+            }
+        ]
+    )
+             
+        let remainingbalance = mybalance-=fast.fastoption;
+        console.log(`Your remaining balance is: ${remainingbalance}`);
+    }
+
+    }
 else 
 {
     console.log("Wrong Pin!!!");
-}
 
+}
